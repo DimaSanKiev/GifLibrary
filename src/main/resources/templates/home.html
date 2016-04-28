@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/app.css}"/>
     <title>giflib | Home</title>
 </head>
 <body>
     <h1>Home</h1>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquid asperiores atque commodi, delectus dolores ea eius facere provident temporibus. Consectetur tempora tenetur veritatis. Harum, in officia. At doloribus, sequi.</p>
-    <img src="http://placehold.it/300x300/5fcf80/ffffff" alt="logo"/>
+    <img th:src="@{/gifs/evolution.gif}" alt="logo"/>
 </body>
 </html>
