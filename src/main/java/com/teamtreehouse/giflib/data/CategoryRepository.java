@@ -16,7 +16,7 @@ public class CategoryRepository {
         new Category(5, "People")
     );
 
-    private Category findById(int id) {
+    public Category findById(int id) {
         for (Category category : ALL_CATEGORIES) {
             if (category.getId() == id) {
                 return category;
@@ -25,7 +25,7 @@ public class CategoryRepository {
         return null;
     }
 
-    private List<Category> getAllCategories() {
+    public List<Category> getAllCategories() {
         return ALL_CATEGORIES;
     }
 }
