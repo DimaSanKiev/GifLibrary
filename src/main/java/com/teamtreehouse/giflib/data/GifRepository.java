@@ -42,4 +42,15 @@ public class GifRepository {
         }
         return gifs;
     }
+
+
+    public List<Gif> getAllFavorites() {
+        List<Gif> gifs = new ArrayList<>();
+        for (Gif gif : ALL_GIFS) {
+            if (gif.isFavorite()) {
+                gifs.add(gif);
+            }
+        }
+        return gifs;
+    }
 }
