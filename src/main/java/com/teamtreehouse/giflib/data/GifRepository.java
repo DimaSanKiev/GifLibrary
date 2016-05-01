@@ -17,7 +17,11 @@ public class GifRepository {
         new Gif("compiler-bot", 4, LocalDate.of(2016, 3, 11), "Ada Lovelace", true),
         new Gif("cowboy-coder", 4, LocalDate.of(2016, 2, 1), "Grace Hooper", false),
         new Gif("infinite-andrew", 5, LocalDate.of(2016, 1, 9), "Marissa Mayer", true),
-        new Gif("evolution", 1, LocalDate.of(2016, 4, 30), "Dmytro Burdyga", true)
+        new Gif("evolution", 1, LocalDate.of(2016, 4, 30), "Dmytro Burdyga", false),
+        new Gif("flights", 3, LocalDate.of(2016, 5, 1), "Dmytro Burdyga", true),
+        new Gif("lambo", 3, LocalDate.of(2016, 5, 2), "Dmytro Burdyga", true),
+        new Gif("porsche", 3, LocalDate.of(2016, 5, 2), "Dmytro Burdyga", true),
+        new Gif("newton", 1, LocalDate.of(2016, 5, 2), "Dmytro Burdyga", true)
     );
 
     public Gif findByName(String name) {
