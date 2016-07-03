@@ -68,3 +68,5 @@ atlassian-ide-plugin.xml
 *.hprof
 
 .gitattributes
+data
+h2-1.4.192.jar
