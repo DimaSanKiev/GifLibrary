@@ -6,6 +6,9 @@ gradle
 /buildSrc/build
 /subprojects/*/build
 /subprojects/docs/src/samples/*/*/build
+gradlew
+gradlew.bat
+settings.gradle
 
 # IDEA
 # ----
@@ -63,3 +66,5 @@ atlassian-ide-plugin.xml
 # HPROF
 # -----
 *.hprof
+
+.gitattributes
