@@ -1,4 +1,4 @@
-group 'com.teamtreehouse'
+group 'org.education'
 version '1.0-SNAPSHOT'
 
 // Include the Spring Boot plugin

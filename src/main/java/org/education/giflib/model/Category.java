@@ -24,7 +24,8 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private List<Gif> gifs = new ArrayList<>();
 
-    public Category(){}
+    public Category() {
+    }
 
     public Long getId() {
         return id;
