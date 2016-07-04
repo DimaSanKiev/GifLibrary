@@ -2,6 +2,7 @@ package org.education.giflib.web.controller;
 
 import org.education.giflib.model.Category;
 import org.education.giflib.service.CategoryService;
+import org.education.giflib.web.Color;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,5 +30,13 @@ public class CategoryController {
     public String addCategory(Category category) {
         categoryService.save(category);
         return "redirect:/categories";
+    }
+
+    // Form for adding a new category
+    @RequestMapping("categories/add")
+    public String formNewCategory(Model model) {
+        model.addAttribute("category", new Category());
+        model.addAttribute("colors", Color.values());
+        return "category/form";
     }
 }
