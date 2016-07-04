@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public class CategoryDaoImpl implements CategoryDao {
+    
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -29,7 +30,11 @@ public class CategoryDaoImpl implements CategoryDao {
 
     @Override
     public void save(Category category) {
-
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.save(category);
+        session.getTransaction().commit();
+        session.close();
     }
 
     @Override

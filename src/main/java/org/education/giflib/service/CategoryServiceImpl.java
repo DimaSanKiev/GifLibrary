@@ -9,6 +9,7 @@ import java.util.List;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
+
     @Autowired
     private CategoryDao categoryDao;
 
@@ -24,7 +25,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void save(Category category) {
-
+        categoryDao.save(category);
     }
 
     @Override
