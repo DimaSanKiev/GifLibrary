@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public class CategoryDaoImpl implements CategoryDao {
-    
+
     @Autowired
     private SessionFactory sessionFactory;
 
