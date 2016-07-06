@@ -17,7 +17,7 @@ public class Category {
     @Size(min = 3, max = 12, message = "{category.name.size}")
     private String name;
 
-    @NotNull
+    @NotNull(message = "{color}")
     @Pattern(regexp = "#[0-9a-fA-F]{6}")
     private String colorCode;
 
