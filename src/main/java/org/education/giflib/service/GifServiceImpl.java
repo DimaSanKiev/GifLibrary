@@ -1,5 +1,6 @@
 package org.education.giflib.service;
 
+import org.education.giflib.dao.GifDao;
 import org.education.giflib.model.Gif;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
