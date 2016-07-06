@@ -32,6 +32,8 @@ public class CategoryController {
     @RequestMapping(value = "/categories", method = RequestMethod.POST)
     public String addCategory(@Valid Category category, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
+            // include validation errors upon redirect
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.category", result);
             // add category if invalid was received
             redirectAttributes.addFlashAttribute("category", category);
             // redirect back to the form
