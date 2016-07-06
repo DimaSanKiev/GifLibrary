@@ -14,7 +14,7 @@ public class Category {
     private Long id;
 
     @NotNull
-    @Size(min = 3, max = 12)
+    @Size(min = 3, max = 12, message = "{category.name.size}")
     private String name;
 
     @NotNull
