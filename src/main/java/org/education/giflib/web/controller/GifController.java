@@ -123,7 +123,9 @@ public class GifController {
     // get search results
     @RequestMapping("/search")
     public String getSearchResults(@RequestParam String q, Model model) {
+        // TODO: 08.07.2016 Get list of GIFs whose description contains value specified by q
         List<Gif> results = new ArrayList<>();
+        
         model.addAttribute("gifs", results);
         return "gif/index";
     }
