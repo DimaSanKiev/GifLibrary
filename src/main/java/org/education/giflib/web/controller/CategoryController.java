@@ -33,6 +33,7 @@ public class CategoryController {
         return "category/index";
     }
 
+    // Add a category
     @RequestMapping(value = "/categories", method = RequestMethod.POST)
     public String addCategory(@Valid Category category, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
@@ -48,13 +49,32 @@ public class CategoryController {
         return "redirect:/categories";
     }
 
-    // Form for adding a new category
+    // Update an existing category
+    @RequestMapping(value = "/categories/{categoryId}", method = RequestMethod.POST)
+    public String updateCategory(@Valid Category category, BindingResult result, RedirectAttributes redirectAttributes) {
+        if (result.hasErrors()) {
+            // include validation errors upon redirect
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.category", result);
+            // add category if invalid was received
+            redirectAttributes.addFlashAttribute("category", category);
+            // redirect back to the form
+            return String.format("redirect:/categories/%s/edit", category.getId());
+        }
+        categoryService.save(category);
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Category successfully updated!", SUCCESS));
+        return "redirect:/categories";
+    }
+
+    // form for adding a new category
     @RequestMapping("categories/add")
     public String formNewCategory(Model model) {
         if (!model.containsAttribute("category")) {
             model.addAttribute("category", new Category());
         }
         model.addAttribute("colors", Color.values());
+        model.addAttribute("action", "/categories");
+        model.addAttribute("heading", "New Category");
+        model.addAttribute("submit", "Add");
         return "category/form";
     }
 
@@ -65,6 +85,9 @@ public class CategoryController {
             model.addAttribute("category", categoryService.findById(categoryId));
         }
         model.addAttribute("colors", Color.values());
+        model.addAttribute("action", String.format("/categories/%s", categoryId));
+        model.addAttribute("heading", "Edit Category");
+        model.addAttribute("submit", "Update");
         return "category/form";
     }
 }
