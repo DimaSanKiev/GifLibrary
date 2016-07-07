@@ -1,6 +1,7 @@
 package org.education.giflib.dao;
 
 import org.education.giflib.model.Gif;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,5 +47,16 @@ public class GifDaoImpl implements GifDao {
         session.delete(gif);
         session.getTransaction().commit();
         session.close();
+    }
+
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Gif> findFavorites() {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("FROM Gif WHERE favorite = TRUE");
+        List<Gif> favorites = query.list();
+        session.close();
+        return favorites;
     }
 }

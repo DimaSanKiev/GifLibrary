@@ -39,9 +39,15 @@ public class GifServiceImpl implements GifService {
         gifDao.delete(gif);
     }
 
+
     @Override
     public void toggleFavorite(Gif gif) {
         gif.setFavorite(!gif.isFavorite());
         gifDao.save(gif);
+    }
+
+    @Override
+    public List<Gif> findFavorites() {
+        return gifDao.findFavorites();
     }
 }

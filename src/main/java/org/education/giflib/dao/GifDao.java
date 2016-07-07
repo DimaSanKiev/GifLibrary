@@ -12,4 +12,7 @@ public interface GifDao {
     void save(Gif gif);
 
     void delete(Gif gif);
+
+
+    List<Gif> findFavorites();
 }

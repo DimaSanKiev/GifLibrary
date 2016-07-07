@@ -106,7 +106,7 @@ public class GifController {
     // Get index of all GIFs marked as favorite
     @RequestMapping("/favorites")
     public String favorites(Model model) {
-        List<Gif> favorites = new ArrayList<>();
+        List<Gif> favorites = gifService.findFavorites();
         model.addAttribute("gifs", favorites);
         model.addAttribute("username", "Dima");
         return "gif/favorites";
