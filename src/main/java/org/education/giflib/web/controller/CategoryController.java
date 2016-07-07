@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -52,6 +53,16 @@ public class CategoryController {
     public String formNewCategory(Model model) {
         if (!model.containsAttribute("category")) {
             model.addAttribute("category", new Category());
+        }
+        model.addAttribute("colors", Color.values());
+        return "category/form";
+    }
+
+    // form for editing an existing category
+    @RequestMapping("categories/{categoryId}/edit")
+    public String formEditCategory(@PathVariable Long categoryId, Model model) {
+        if (!model.containsAttribute("category")) {
+            model.addAttribute("category", categoryService.findById(categoryId));
         }
         model.addAttribute("colors", Color.values());
         return "category/form";
