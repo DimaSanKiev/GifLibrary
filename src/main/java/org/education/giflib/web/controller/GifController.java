@@ -84,4 +84,13 @@ public class GifController {
 
         return "gif/form";
     }
+
+    // Delete a GIF
+    @RequestMapping(value = "/gifs/{gifId}/delete", method = RequestMethod.POST)
+    public String deleteGif(@PathVariable Long gifId, RedirectAttributes redirectAttributes) {
+        Gif gif = gifService.findById(gifId);
+        gifService.delete(gif);
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("GIF deleted.", SUCCESS));
+        return "redirect:/";
+    }
 }
