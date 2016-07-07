@@ -35,6 +35,14 @@ public class CategoryController {
         return "category/index";
     }
 
+    // get single category page
+    @RequestMapping("/categories/{categoryId}")
+    public String category(@PathVariable Long categoryId, Model model) {
+        Category category = null;
+        model.addAttribute("category", category);
+        return "category/details";
+    }
+
     // Add a category
     @RequestMapping(value = "/categories", method = RequestMethod.POST)
     public String addCategory(@Valid Category category, BindingResult result, RedirectAttributes redirectAttributes) {
