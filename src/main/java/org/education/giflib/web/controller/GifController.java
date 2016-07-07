@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,5 +93,13 @@ public class GifController {
         gifService.delete(gif);
         redirectAttributes.addFlashAttribute("flash", new FlashMessage("GIF deleted.", SUCCESS));
         return "redirect:/";
+    }
+
+    // Mark / Unmark an existing GIF as a favorite
+    @RequestMapping(value = "/gifs/{gifId}/favorite", method = RequestMethod.POST)
+    public String toggleFavorite(@PathVariable Long gifId, HttpServletRequest request) {
+        Gif gif = gifService.findById(gifId);
+        gifService.toggleFavorite(gif);
+        return String .format("redirect:%s", request.getHeader("referer"));
     }
 }
