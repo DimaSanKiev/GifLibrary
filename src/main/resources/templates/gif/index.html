@@ -9,7 +9,7 @@
     <div class="row">
         <div th:each="gif : ${gifs}" class="col s12 l4">
             <a th:href="@{|/gifs/${gif.id}|}" class="actions">
-                <img th:src="@{|/gifs/${gif.id}.gif|}" alt="gif" />
+                <img th:src="@{|/gifs/${gif.id}.gif|}" alt="gif"/>
                 <form th:action="@{|/gifs/${gif.id}/favorite|}" method="post">
                     <button type="submit" th:class="(${gif.favorite}? 'un' : '') + 'mark favorite'"></button>
                 </form>

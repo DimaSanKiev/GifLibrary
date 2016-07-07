@@ -8,7 +8,7 @@
 <div class="gif-detail container">
     <div class="frame row">
         <div class="col s12 actions">
-            <img th:src="@{|/gifs/${gif.id}.gif|}" alt="gif" />
+            <img th:src="@{|/gifs/${gif.id}.gif|}" alt="gif"/>
             <form th:action="@{|/gifs/${gif.id}/favorite|}" method="post">
                 <button type="submit" th:class="(${gif.favorite}? 'un' : '') + 'mark favorite'"></button>
             </form>
@@ -19,7 +19,8 @@
             <h4 th:text="${gif.description}"></h4>
             <div>
                 <span class="user" th:text="|${gif.timeSinceUploaded} ago by ${gif.username}|"></span>
-                <span class="category"><a th:href="@{|/categories/${gif.category.id}|}" th:text="${gif.category.name}" th:style="|color:${gif.category.colorCode}|"></a></span>
+                <span class="category"><a th:href="@{|/categories/${gif.category.id}|}" th:text="${gif.category.name}"
+                                          th:style="|color:${gif.category.colorCode}|"></a></span>
                 <div class="actions">
                     <a th:href="@{|/gifs/${gif.id}/edit|}">Edit</a>
                     <form th:action="@{|/gifs/${gif.id}/delete|}" method="post">
@@ -29,7 +30,7 @@
             </div>
         </div>
         <div class="col s2 l1 pull-l11">
-            <img class="circle" th:src="@{/images/me.jpg}" alt="avatar" />
+            <img class="circle" th:src="@{/images/me.jpg}" alt="avatar"/>
         </div>
     </div>
     <div class="row">

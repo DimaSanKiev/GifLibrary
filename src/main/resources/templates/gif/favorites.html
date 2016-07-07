@@ -7,10 +7,10 @@
 <div th:replace="layout :: flash"></div>
 <div class="row user-meta">
     <div class="col s3 l12">
-        <img class="circle" th:src="@{/images/me.jpg}" alt="avatar" />
+        <img class="circle" th:src="@{/images/me.jpg}" alt="avatar"/>
     </div>
     <div class="col s9= l12">
-        <h2 th:text="${username}">Jane Doe</h2>
+        <h2 th:text="${username}">Dima</h2>
         <div class="meta" th:text="|${#lists.size(gifs)} Favorites|"></div>
     </div>
 </div>
@@ -19,7 +19,7 @@
     <div class="row">
         <div th:each="gif : ${gifs}" class="col s12 l4">
             <a th:href="@{|/gifs/${gif.id}|}">
-                <img th:src="@{|/gifs/${gif.id}.gif|}" />
+                <img th:src="@{|/gifs/${gif.id}.gif|}"/>
                 <a href="#" th:class="(${gif.favorite}? 'un' : '') + 'mark favorite'"></a>
             </a>
         </div>

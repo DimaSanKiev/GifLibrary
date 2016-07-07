@@ -38,7 +38,7 @@ public class CategoryController {
     // get single category page
     @RequestMapping("/categories/{categoryId}")
     public String category(@PathVariable Long categoryId, Model model) {
-        Category category = null;
+        Category category = categoryService.findById(categoryId);
         model.addAttribute("category", category);
         return "category/details";
     }
