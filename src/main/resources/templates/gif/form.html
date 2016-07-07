@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="divider"></div>
-    <form th:action="@{/gifs}" method="post" th:object="${gif}" enctype="multipart/form-data">
+    <form th:action="@{${action}}" method="post" th:object="${gif}" enctype="multipart/form-data">
         <input type="hidden" th:field="*{id}"/>
         <div class="row">
             <div class="col s12 l8">

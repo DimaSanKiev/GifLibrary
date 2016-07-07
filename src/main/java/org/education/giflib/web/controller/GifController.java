@@ -28,7 +28,7 @@ public class GifController {
     // home page - list of all GIFs
     @RequestMapping("/")
     public String listGifs(Model model) {
-        List<Gif> gifs = new ArrayList<>();
+        List<Gif> gifs = gifService.findAll();
         model.addAttribute("gifs", gifs);
         return "gif/index";
     }
@@ -48,7 +48,7 @@ public class GifController {
         return gifService.findById(gifId).getBytes();
     }
 
-    // upload a new GIF
+    // Upload a new GIF
     @RequestMapping(value = "/gifs", method = RequestMethod.POST)
     public String addGif(Gif gif, @RequestParam MultipartFile file, RedirectAttributes redirectAttributes) {
         gifService.save(gif, file);
@@ -60,8 +60,28 @@ public class GifController {
     // form for uploading a new GIF
     @RequestMapping("/upload")
     public String formNewGif(Model model) {
-        model.addAttribute("gif", new Gif());
+        if (!model.containsAttribute("gif")) {
+            model.addAttribute("gif", new Gif());
+        }
         model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("action", "/gifs");
+        model.addAttribute("heading", "Upload");
+        model.addAttribute("submit", "Add");
+
+        return "gif/form";
+    }
+
+    // form for editing an existing GIF
+    @RequestMapping(value = "/gifs/{gifId}/edit")
+    public String formEditGif(@PathVariable Long gifId, Model model) {
+        if (!model.containsAttribute("gif")) {
+            model.addAttribute("gif", gifService.findById(gifId));
+        }
+        model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("action", String.format("/gifs/%s", gifId));
+        model.addAttribute("heading", "Edit GIF");
+        model.addAttribute("submit", "Update");
+
         return "gif/form";
     }
 }
