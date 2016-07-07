@@ -35,7 +35,7 @@ public class CategoryDaoImpl implements CategoryDao {
     public void save(Category category) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(category);
+        session.saveOrUpdate(category);
         session.getTransaction().commit();
         session.close();
     }
