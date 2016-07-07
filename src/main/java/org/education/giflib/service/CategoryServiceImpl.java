@@ -1,6 +1,7 @@
 package org.education.giflib.service;
 
 import org.education.giflib.dao.CategoryDao;
+import org.education.giflib.exception.CategoryNotEmptyException;
 import org.education.giflib.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void delete(Category category) {
+        if (category.getGifs().size() > 0) {
+            throw new CategoryNotEmptyException();
+        }
         categoryDao.delete(category);
     }
 }

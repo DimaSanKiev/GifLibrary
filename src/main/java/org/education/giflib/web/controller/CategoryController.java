@@ -1,5 +1,6 @@
 package org.education.giflib.web.controller;
 
+import org.education.giflib.exception.CategoryNotEmptyException;
 import org.education.giflib.model.Category;
 import org.education.giflib.service.CategoryService;
 import org.education.giflib.web.Color;
@@ -95,12 +96,12 @@ public class CategoryController {
     // Delete an existing category
     @RequestMapping(value = "/categories/{categoryId}/delete", method = RequestMethod.POST)
     public String deleteCategory(@PathVariable Long categoryId, RedirectAttributes redirectAttributes) {
-        Category cat = categoryService.findById(categoryId);
-        if (cat.getGifs().size() > 0) {
+        try {
+            categoryService.delete(categoryService.findById(categoryId));
+        } catch (CategoryNotEmptyException e) {
             redirectAttributes.addFlashAttribute("flash", new FlashMessage("Only empty categories can be deleted.", FAILURE));
             return String.format("redirect:/categories/%s/edit", categoryId);
         }
-        categoryService.delete(cat);
         redirectAttributes.addFlashAttribute("flash", new FlashMessage("Category deleted!", SUCCESS));
         return "redirect:/categories";
     }
