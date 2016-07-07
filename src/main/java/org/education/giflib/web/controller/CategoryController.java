@@ -16,7 +16,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.util.List;
 
-import static org.education.giflib.web.FlashMessage.Status.*;
+import static org.education.giflib.web.FlashMessage.Status.FAILURE;
+import static org.education.giflib.web.FlashMessage.Status.SUCCESS;
 
 @Controller
 public class CategoryController {
@@ -89,5 +90,18 @@ public class CategoryController {
         model.addAttribute("heading", "Edit Category");
         model.addAttribute("submit", "Update");
         return "category/form";
+    }
+
+    // Delete an existing category
+    @RequestMapping(value = "/categories/{categoryId}/delete", method = RequestMethod.POST)
+    public String deleteCategory(@PathVariable Long categoryId, RedirectAttributes redirectAttributes) {
+        Category cat = categoryService.findById(categoryId);
+        if (cat.getGifs().size() > 0) {
+            redirectAttributes.addFlashAttribute("flash", new FlashMessage("Only empty categories can be deleted.", FAILURE));
+            return String.format("redirect:/categories/%s/edit", categoryId);
+        }
+        categoryService.delete(cat);
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Category deleted!", SUCCESS));
+        return "redirect:/categories";
     }
 }

@@ -24,7 +24,8 @@
                 <select th:field="*{colorCode}" class="cs-select cs-skin-border">
                     <option value="" disabled="disabled">Category Color</option>
                     <option th:each="color : ${colors}" th:value="${color.hexCode}" th:text="${color.name}"
-                            th:style="|color:${color.hexCode}|">Aqua</option>
+                            th:style="|color:${color.hexCode}|">Aqua
+                    </option>
                 </select>
                 <div class="error-message" th:if="${#fields.hasErrors('colorCode')}" th:errors="*{colorCode}"></div>
             </div>
@@ -36,9 +37,9 @@
             </div>
         </div>
     </form>
-    <div class="row delete">
+    <div class="row delete" th:if="${category.id != null}">
         <div class="col s12 l8">
-            <form>
+            <form th:action="@{|/categories/${categoryId}/delete|}" method="post">
                 <button type="submit" class="button">Delete</button>
             </form>
         </div>
