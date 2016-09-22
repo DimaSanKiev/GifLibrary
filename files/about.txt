@@ -1,0 +1,5 @@
+// Run the command from here:
+java -cp h2-1.4.190.jar org.h2.tools.Server
+
+// Use the URL:
+jdbc:h2:tcp://localhost/~/data/giflib
